@@ -1,0 +1,27 @@
+{
+  "name": "ui-tests-with-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santhosh-r-urs/UI-Tests-with-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santhosh-r-urs/UI-Tests-with-Playwright/issues"
+  },
+  "homepage": "https://github.com/santhosh-r-urs/UI-Tests-with-Playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
