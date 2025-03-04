@@ -19,4 +19,8 @@ export class YourCartPage {
         await this.checkoutButton.click();
     }
 
+    async goToYourCartPage() {
+        await this.page.goto('https://www.saucedemo.com/cart.html');
+    }
+
 }

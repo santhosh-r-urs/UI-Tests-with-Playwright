@@ -15,16 +15,29 @@ export default defineConfig({
     },
     projects: [
         {
+            name: 'setup',
+            testMatch: '**/*.setup.js',
+          },
+        {
             name: 'chromium',
-            use: { browserName: 'chromium' },
+            use: { browserName: 'chromium',
+                storageState: 'playwright/.auth/standard_user.json'
+             },
+            dependencies: ['setup'],
         },
-        {
-            name: 'firefox',
-            use: { browserName: 'firefox' },
-        },
-        {
-            name: 'webkit',
-            use: { browserName: 'webkit' },
-        },
+        // {
+        //     name: 'firefox',
+        //     use: { browserName: 'firefox',
+        //         storageState: 'playwright/.auth/standard_user.json'
+        //      },
+        //     dependencies: ['setup'],
+        // },
+        // {
+        //     name: 'webkit',
+        //     use: { browserName: 'webkit',
+        //         storageState: 'playwright/.auth/standard_user.json'
+        //      },
+        //     dependencies: ['setup'],
+        // },
     ],
 });

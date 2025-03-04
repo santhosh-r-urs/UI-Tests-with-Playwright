@@ -24,4 +24,8 @@ export class ProductsListPage {
         this.cartIconBadgeCount = await this.cartIconBadge.textContent();
         return this.cartIconBadgeCount;
     }
+
+    async goToProductListsPage() {
+        await this.page.goto('https://www.saucedemo.com/inventory.html');
+    }
 }
