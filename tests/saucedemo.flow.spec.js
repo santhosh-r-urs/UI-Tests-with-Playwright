@@ -23,7 +23,7 @@ test('Login to Saucedemo and complete checkout', async ({
   const postalCode = '12345';
 
   await loginPage.goToSaucedemoPage();
-  await loginPage.pageHeaderIsVisible();
+  expect(await loginPage.pageHeader.isVisible()).toBeTruthy();
   await loginPage.login();
 
   priceOfItem = await productsListPage.capturePriceOfItem(itemName);
