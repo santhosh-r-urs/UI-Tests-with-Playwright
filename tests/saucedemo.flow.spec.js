@@ -8,46 +8,60 @@ let priceOfItem;
 // Not using storage state in this test, completing one full end to end flow from login to checkout complete
 test.use({ storageState: { cookies: [], origins: [] } });
 
-test('Login to Saucedemo and complete checkout', async ({page, productsListPage, yourCartPage, yourInformationPage, checkoutOverviewPage}) => {
-    const loginPage = new LoginPage(page);
-    const checkoutCompletePage = new CheckoutCompletePage(page);
+test('Login to Saucedemo and complete checkout', async ({
+  page,
+  productsListPage,
+  yourCartPage,
+  yourInformationPage,
+  checkoutOverviewPage
+}) => {
+  const loginPage = new LoginPage(page);
+  const checkoutCompletePage = new CheckoutCompletePage(page);
 
-    const firstName = 'Test';
-    const lastName = 'User';
-    const postalCode = '12345';
+  const firstName = 'Test';
+  const lastName = 'User';
+  const postalCode = '12345';
 
-    await loginPage.goToSaucedemoPage();
-    await loginPage.pageHeaderIsVisible();
-    await loginPage.login();
+  await loginPage.goToSaucedemoPage();
+  await loginPage.pageHeaderIsVisible();
+  await loginPage.login();
 
-    
-    priceOfItem = await productsListPage.capturePriceOfItem(itemName);
-    
-    await productsListPage.addItemToCart(itemName);
-    expect(await productsListPage.cartIconBadge).toBeVisible();
-    expect(await productsListPage.getCartIconBadgeCount()).toBe('1');
-    await productsListPage.clickCartIcon();
-    expect(await yourCartPage.pageTitle).toHaveText('Your Cart');
+  priceOfItem = await productsListPage.capturePriceOfItem(itemName);
 
-    expect(await yourCartPage.getPriceOnYourCartPage(itemName)).toBe(priceOfItem);
+  await productsListPage.addItemToCart(itemName);
+  expect(await productsListPage.cartIconBadge).toBeVisible();
+  expect(await productsListPage.getCartIconBadgeCount()).toBe('1');
+  await productsListPage.clickCartIcon();
+  expect(await yourCartPage.pageTitle).toHaveText('Your Cart');
 
-    await yourCartPage.clickCheckOutButton();
+  expect(await yourCartPage.getPriceOnYourCartPage(itemName)).toBe(priceOfItem);
 
-    expect(await yourInformationPage.pageTitle).toHaveText('Checkout: Your Information');
-    await yourInformationPage.fillFirstName(firstName);
-    await yourInformationPage.fillLastName(lastName);
-    await yourInformationPage.fillPostalCode(postalCode);
-    await yourInformationPage.clickContinueButton();
+  await yourCartPage.clickCheckOutButton();
 
-    expect(await checkoutOverviewPage.pageTitle).toHaveText('Checkout: Overview');
-    expect( await checkoutOverviewPage.getPriceOnCheckOutOverviewPage(itemName)).toBe(priceOfItem);
-    expect(await checkoutOverviewPage.getSubTotalPriceOnCheckOutOverviewPage()).toBe(`Item total: ${priceOfItem}`);
+  expect(await yourInformationPage.pageTitle).toHaveText(
+    'Checkout: Your Information'
+  );
+  await yourInformationPage.fillFirstName(firstName);
+  await yourInformationPage.fillLastName(lastName);
+  await yourInformationPage.fillPostalCode(postalCode);
+  await yourInformationPage.clickContinueButton();
 
-    await checkoutOverviewPage.clickFinishButton();
+  expect(await checkoutOverviewPage.pageTitle).toHaveText('Checkout: Overview');
+  expect(
+    await checkoutOverviewPage.getPriceOnCheckOutOverviewPage(itemName)
+  ).toBe(priceOfItem);
+  expect(
+    await checkoutOverviewPage.getSubTotalPriceOnCheckOutOverviewPage()
+  ).toBe(`Item total: ${priceOfItem}`);
 
-    expect (await checkoutCompletePage.pageTitle).toHaveText('Checkout: Complete!');
-    expect (await checkoutCompletePage.finishedIcon.isVisible()).toBeTruthy();
-    expect (await checkoutCompletePage.completedText).toHaveText('Thank you for your order!');
-    expect (await checkoutCompletePage.backToHomeButton.isVisible()).toBeTruthy();
+  await checkoutOverviewPage.clickFinishButton();
 
+  expect(await checkoutCompletePage.pageTitle).toHaveText(
+    'Checkout: Complete!'
+  );
+  expect(await checkoutCompletePage.finishedIcon.isVisible()).toBeTruthy();
+  expect(await checkoutCompletePage.completedText).toHaveText(
+    'Thank you for your order!'
+  );
+  expect(await checkoutCompletePage.backToHomeButton.isVisible()).toBeTruthy();
 });
