@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  Run_UI_tests_on_Pipeline:
     runs-on: ubuntu-latest
     environment: pipeline  
 
@@ -41,7 +41,7 @@ jobs:
         env:
           CI: true
      
-      - name: Upload Jest Test Reports (HTML)
+      - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
