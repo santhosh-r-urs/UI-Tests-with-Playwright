@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  Run_UI_tests_on_Pipeline:
     runs-on: ubuntu-latest
     environment: pipeline  
 
