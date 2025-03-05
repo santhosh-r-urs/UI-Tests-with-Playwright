@@ -7,17 +7,15 @@ export class CheckoutOverviewPage {
         this.finishButton = page.locator('[data-test="finish"]');   
     }
 
-    async getPriceOnCheckOutOverviewPage(itemName, page) {
-        const priceLocator = await page.locator(`//*[@data-test='inventory-item-name' and text()='${itemName}']/following::div[@class='inventory_item_price']`).first();
+    async getPriceOnCheckOutOverviewPage(itemName) {
+        const priceLocator = await this.page.locator(`//*[@data-test='inventory-item-name' and text()='${itemName}']/following::div[@class='inventory_item_price']`).first();
         const priceOnYourCartPage = await priceLocator.textContent();
-        console.log(priceOnYourCartPage);
         return priceOnYourCartPage;
     }
     
-    async getSubTotalPriceOnCheckOutOverviewPage(page) {
-        const subTotalLocator = await page.locator('[data-test="subtotal-label"]');
+    async getSubTotalPriceOnCheckOutOverviewPage() {
+        const subTotalLocator = await this.page.locator('[data-test="subtotal-label"]');
         const subTotalPrice = await subTotalLocator.textContent();
-        console.log(subTotalPrice);
         return subTotalPrice;
     }  
 

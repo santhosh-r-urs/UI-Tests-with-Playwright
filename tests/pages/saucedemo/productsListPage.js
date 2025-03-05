@@ -5,14 +5,13 @@ export class ProductsListPage {
         this.cartIconBadge = page.locator('[data-test="shopping-cart-badge"]');   
     }
 
-    async addItemToCart(itemName, page) {
-        await page.locator(`//*[@data-test='inventory-item-name' and text() = '${itemName}']/following::button[text() = 'Add to cart']`).first().click();
+    async addItemToCart(itemName) {
+        await this.page.locator(`//*[@data-test='inventory-item-name' and text() = '${itemName}']/following::button[text() = 'Add to cart']`).first().click();
     }
 
-    async capturePriceOfItem(itemName, page) {
-        const priceLocator = await page.locator(`//*[@data-test='inventory-item-name' and text()='${itemName}']/following::div[@class='inventory_item_price']`).first();
+    async capturePriceOfItem(itemName) {
+        const priceLocator = await this.page.locator(`//*[@data-test='inventory-item-name' and text()='${itemName}']/following::div[@class='inventory_item_price']`).first();
         const price = await priceLocator.textContent();
-        console.log(price);
         return price;
     }
 
@@ -23,5 +22,9 @@ export class ProductsListPage {
     async getCartIconBadgeCount() {
         this.cartIconBadgeCount = await this.cartIconBadge.textContent();
         return this.cartIconBadgeCount;
+    }
+
+    async goToProductListsPage() {
+        await this.page.goto('https://www.saucedemo.com/inventory.html');
     }
 }

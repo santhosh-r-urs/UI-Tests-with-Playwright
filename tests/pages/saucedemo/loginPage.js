@@ -16,7 +16,7 @@ export class LoginPage {
     }
 
     async pageHeaderIsVisible() {
-        await expect(this.pageHeader).toBeVisible();
+        expect(await this.pageHeader.isVisible()).toBeTruthy();
     }
 
     async goToSaucedemoPage() {
