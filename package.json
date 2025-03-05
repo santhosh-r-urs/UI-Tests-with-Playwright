@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx playwright test --workers=2"
+    "test": "npx playwright test --workers=2",
+    "lint": "eslint 'tests/**/*.js' --fix",
+    "format": "prettier --write 'tests/**/*.js'",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -19,9 +22,22 @@
   },
   "homepage": "https://github.com/santhosh-r-urs/UI-Tests-with-Playwright#readme",
   "devDependencies": {
-    "@playwright/test": "^1.50.1"
+    "@eslint/js": "^9.21.0",
+    "@playwright/test": "^1.50.1",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.3"
   },
   "dependencies": {
     "dotenv": "^16.4.7"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
