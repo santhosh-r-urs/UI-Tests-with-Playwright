@@ -1,0 +1,42 @@
+name: Playwright UI Tests
+
+on:
+  push:
+    branches: 
+        - main
+        - develop
+  pull_request:
+    branches:
+        - main
+        - develop
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: pipeline  
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+    
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+
+      - name: Create .env File from Environment Secrets
+        run: |
+          echo "SAUCEDEMO_USERNAME_STANDARD=${{ secrets.SAUCEDEMO_USERNAME_STANDARD }}" >> .env
+          echo "SAUCEDEMO_PASSWORD_STANDARD=${{ secrets.SAUCEDEMO_PASSWORD_STANDARD }}" >> .env
+
+      - name: Run Playwright Tests
+        run: npm run test
+        env:
+          CI: true

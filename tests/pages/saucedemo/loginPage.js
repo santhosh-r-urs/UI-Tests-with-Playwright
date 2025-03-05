@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+const saudedemoUrl = 'https://www.saucedemo.com/';
 
 export class LoginPage {
   constructor(page) {
@@ -10,17 +10,12 @@ export class LoginPage {
   }
 
   async login() {
-    await this.usernameField.fill(process.env.SAUCEDEMO_USERNAME);
-    await this.passwordField.fill(process.env.SAUCEDEMO_PASSWORD);
+    await this.usernameField.fill(process.env.SAUCEDEMO_USERNAME_STANDARD);
+    await this.passwordField.fill(process.env.SAUCEDEMO_PASSWORD_STANDARD);
     await this.loginButton.click();
   }
 
-  async pageHeaderIsVisible() {
-    expect(await this.pageHeader.isVisible()).toBeTruthy();
-  }
-
   async goToSaucedemoPage() {
-    await this.page.goto('https://www.saucedemo.com/');
-    await this.pageHeaderIsVisible();
+    await this.page.goto(saudedemoUrl);
   }
 }
