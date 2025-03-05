@@ -4,7 +4,7 @@ This is a **CI integrated Playwright UI test suite**. Has a few tests related to
 
 **Suite uses:**
 1. **Cookie and session storage** feature to avoid login on every test.
-2. **Tracing** is enabled
+2. **Tracing** is enabled.
 3. **Reports** generated for each run with **videos for failed tests** and **screenshots** for all tests(can be updated).
 4. **Environment variables** are used to handle secure data like, credentials.
 5. **Github Actions and Workflows** are used for **CI**.
@@ -16,17 +16,17 @@ This is a **CI integrated Playwright UI test suite**. Has a few tests related to
 11. No implicit waits or timeouts.
 
 **Running the tests locally:**
-1. Clone the repo
-2. Run 'npm install' command
-3. Run 'npx playwright install' command
-4. Run 'npm run test' command
-5. Run 'npx playwright show-report' command to view the test report
+1. Clone the repo.
+2. Run 'npm install' command.
+3. Run 'npx playwright install' command.
+4. Run 'npm run test' command.
+5. Run 'npx playwright show-report' command to view the test report.
 
 **Running the tests through GitHub UI without cloning the repo:**
 1. Navigate to 'Actions' tab of the repo in GitHub.
 2. In the 'Actions' list on the left hand side, select 'Playwright UI Test'.
 3. Click the 'Run workflow' button on the right hand side.
-4. Select the branch, (main is default)
+4. Select the branch, (main is default).
 5. Click 'Run workflow' button on the dialog.
 
 **Viewing the test reports for tests run on pipeline:**
