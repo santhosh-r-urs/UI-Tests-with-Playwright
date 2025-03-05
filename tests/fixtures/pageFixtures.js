@@ -1,10 +1,10 @@
-import { test } from '@playwright/test';
+import { test as base } from '@playwright/test';
 import { ProductsListPage } from '../pages/saucedemo/productsListPage';
 import { YourCartPage } from '../pages/saucedemo/yourCartPage';
 import { YourInformationPage } from '../pages/saucedemo/yourInformationPage';
 import { CheckoutOverviewPage } from '../pages/saucedemo/checkoutOverviewPage';
 
-export const test = test.extend({
+export const test = base.extend({
     productsListPage: async ({ page }, use) => {
         const productsListPage = new ProductsListPage(page);
         await use(productsListPage);

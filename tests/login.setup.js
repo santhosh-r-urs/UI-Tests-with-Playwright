@@ -1,4 +1,4 @@
-import { test as setup, expect } from '@playwright/test';
+import { test as setup } from '@playwright/test';
 import { LoginPage } from './pages/saucedemo/loginPage';
 import path from 'path';
 
